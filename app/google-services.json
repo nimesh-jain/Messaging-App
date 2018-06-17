@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "778288007736",
+    "firebase_url": "https://logindemo-78c38.firebaseio.com",
+    "project_id": "logindemo-78c38",
+    "storage_bucket": "logindemo-78c38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778288007736:android:94432ade8cfd0de1",
+        "android_client_info": {
+          "package_name": "com.example.saurav.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778288007736-bpr43g3q1c9tf2048s20kv1ftdojdck9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saurav.login",
+            "certificate_hash": "138a9119620bfc6dfef7619bbe0da2eb4d1af717"
+          }
+        },
+        {
+          "client_id": "778288007736-2p8jloforfdrhhc1ndd1g17fuo9ohl2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwclO9-4_JD9UPdKNxQ6hCsHz5EhC0X6E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778288007736-2p8jloforfdrhhc1ndd1g17fuo9ohl2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

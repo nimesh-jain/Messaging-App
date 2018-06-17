@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.saurav.login.ChatActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messagelist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/msgbox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="7dp"
+        android:scrollbarFadeDuration="0">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+    <EditText
+        android:id="@+id/msgbox"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@+id/image_option"
+        android:layout_toLeftOf="@+id/sendbtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/chat_text_style"
+        android:ems="10"
+        android:hint="type a message..." />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sendbtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/messagelist"
+        android:background="@drawable/ic_send_black_24dp"
+        android:src="@drawable/ic_send_black_24dp"
+        android:paddingRight="10dp"
+        android:backgroundTint="@color/startblue"
+        android:tint="#ffffff"/>
+
+    <TextView
+        android:id="@+id/image_option"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/messagelist"
+        android:gravity="center"
+        android:text="+"
+        android:textColor="@color/silver"
+        android:textSize="29dp" />
+
+</RelativeLayout>
