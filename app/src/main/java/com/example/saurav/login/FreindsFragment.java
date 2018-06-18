@@ -30,6 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * A simple {@link Fragment} subclass.
  */
 public class FreindsFragment extends Fragment {
+
     private RecyclerView friendrecyclerview;
     private View mainview;
     private String current_user_id;
@@ -51,11 +52,13 @@ public class FreindsFragment extends Fragment {
         mainview=inflater.inflate(R.layout.fragment_freinds, container, false);
         friendrecyclerview=(RecyclerView)mainview.findViewById(R.id.friendlistview);
 
+
         mauth=FirebaseAuth.getInstance();
         current_user_id=mauth.getCurrentUser().getUid();
         frienddatabase=FirebaseDatabase.getInstance().getReference().child("Friends").child(current_user_id);
+        frienddatabase.keepSynced(true);
         usersdatabase=FirebaseDatabase.getInstance().getReference().child("Users");
-
+        usersdatabase.keepSynced(true);
 
 
 

@@ -5,7 +5,8 @@
         android:id="@+id/logout"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:title="Log out">
+        android:title="Log out"
+        android:icon="@drawable/close">
     </item>
     <item
         android:id="@+id/profile"

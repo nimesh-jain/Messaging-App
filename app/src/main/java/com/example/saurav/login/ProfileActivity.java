@@ -34,6 +34,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -95,9 +98,20 @@ public class ProfileActivity extends AppCompatActivity {
                 editprog.setVisibility(View.VISIBLE);
                 if(task.isSuccessful()){
                     if(task.getResult().exists()){
-                        String image=task.getResult().getString("image");
+                        final String image=task.getResult().getString("image");
 
-                        Glide.with(ProfileActivity.this).load(image).into(imageView);
+                        Picasso.with(ProfileActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError() {
+                                Picasso.with(ProfileActivity.this).load(image).into(imageView);
+
+                            }
+                        });
                         editprog.setVisibility(View.INVISIBLE);
 
                         //Toast.makeText(ProfileActivity.this,"Data Exists ",Toast.LENGTH_SHORT).show();
@@ -176,7 +190,6 @@ public class ProfileActivity extends AppCompatActivity {
                         //Toast.makeText(ProfileActivity.this,"You already have permission",Toast.LENGTH_SHORT).show();
                         CropImage.activity()
                                 .setGuidelines(CropImageView.Guidelines.ON)
-                                .setAspectRatio(1,1)
                                 .start(ProfileActivity.this);
 
 

@@ -24,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -71,12 +74,14 @@ public class Detailsinfo extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(passed_id);
+        databaseReference.keepSynced(true);
 
         friendsReqDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
-
+        friendsReqDatabase.keepSynced(true);
         friendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        friendDatabase.keepSynced(true);
         notificationDatabase = FirebaseDatabase.getInstance().getReference().child("Notifications");
-
+        notificationDatabase.keepSynced(true);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -146,7 +151,18 @@ public class Detailsinfo extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     if (task.getResult().exists()) {
                         final String image = task.getResult().getString("image");
-                        Glide.with(Detailsinfo.this).load(image).into(user_personal_image);
+                        Picasso.with(Detailsinfo.this).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(user_personal_image, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError() {
+                                Picasso.with(Detailsinfo.this).load(image).into(user_personal_image);
+
+                            }
+                        });
                         user_personal_image.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

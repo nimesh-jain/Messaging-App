@@ -87,6 +87,7 @@ public class ChatActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mCurrentUser_id=mAuth.getCurrentUser().getUid();
         frienddatabase=FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrentUser_id);
+        frienddatabase.keepSynced(true);
 
 
         ActionBar actionBar =getSupportActionBar();
@@ -103,7 +104,6 @@ public class ChatActivity extends AppCompatActivity {
         sendbtn=(FloatingActionButton) findViewById(R.id.sendbtn);
 
         storageReference= FirebaseStorage.getInstance().getReference();
-
         messagelist=(RecyclerView)findViewById(R.id.messagelist);
         mlinearlayout=new LinearLayoutManager(this);
         messagelist.setHasFixedSize(true);
@@ -191,7 +191,6 @@ public class ChatActivity extends AppCompatActivity {
                         //Toast.makeText(ProfileActivity.this,"You already have permission",Toast.LENGTH_SHORT).show();
                         CropImage.activity()
                                 .setGuidelines(CropImageView.Guidelines.ON)
-                                .setAspectRatio(1,1)
                                 .start(ChatActivity.this);
 
 

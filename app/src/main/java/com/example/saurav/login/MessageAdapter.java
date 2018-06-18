@@ -83,6 +83,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         final String msg_key=c.getMsg_key();
         final String message_type=c.getType();
         chatuserdatabase =FirebaseDatabase.getInstance().getReference().child("Users").child(from_user);
+        chatuserdatabase.keepSynced(true);
         chatuserdatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

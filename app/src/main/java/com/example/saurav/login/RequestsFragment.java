@@ -57,8 +57,9 @@ public class RequestsFragment extends Fragment {
         mauth=FirebaseAuth.getInstance();
         current_user_id=mauth.getCurrentUser().getUid();
         requestdatabase=FirebaseDatabase.getInstance().getReference().child("Friend_req").child(current_user_id);
+        requestdatabase.keepSynced(true);
         usersdatabase=FirebaseDatabase.getInstance().getReference().child("Users");
-
+        usersdatabase.keepSynced(true);
 
         emptylist=(TextView) mainview.findViewById(R.id.emptylist);
         friendrecyclerview.setHasFixedSize(true);

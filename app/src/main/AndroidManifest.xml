@@ -14,7 +14,8 @@
         android:icon="@mipmap/rd"
         android:roundIcon="@mipmap/rd"
         android:supportsRtl="true"
-        android:theme="@style/Base.Theme.AppCompat.Light">
+        android:theme="@style/Base.Theme.AppCompat.Light"
+        android:name=".FirebaseHandler">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

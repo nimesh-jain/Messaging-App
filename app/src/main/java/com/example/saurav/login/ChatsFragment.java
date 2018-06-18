@@ -53,11 +53,16 @@ public class ChatsFragment extends Fragment {
         friendrecyclerview=(RecyclerView)mainview.findViewById(R.id.chatlistview);
 
 
+
         mauth= FirebaseAuth.getInstance();
+
         current_user_id=mauth.getCurrentUser().getUid();
         chatdatabase= FirebaseDatabase.getInstance().getReference().child("Chat").child(current_user_id);
+        chatdatabase.keepSynced(true);
         messageDatabase=FirebaseDatabase.getInstance().getReference().child("messages").child(current_user_id);
+        messageDatabase.keepSynced(true);
         usersdatabase=FirebaseDatabase.getInstance().getReference().child("Users");
+        usersdatabase.keepSynced(true);
 
 
 

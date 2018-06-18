@@ -27,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -47,6 +50,7 @@ public class UsersActivity extends AppCompatActivity {
         mauth=FirebaseAuth.getInstance();
         getSupportActionBar().setTitle("All Users");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUsersDatabase.keepSynced(true);
         firebaseFirestore=FirebaseFirestore.getInstance();
         imageView=(CircleImageView)findViewById(R.id.user_single_image);
 
@@ -130,9 +134,19 @@ public class UsersActivity extends AppCompatActivity {
             TextView userEmailView =(TextView)mview.findViewById(R.id.user_email_view);
             userEmailView.setText(email);
         }
-        public  void setImage(String image_url, Context ctx){
-            CircleImageView circleImageView=(CircleImageView)mview.findViewById(R.id.user_single_image);
-            Glide.with(ctx).load(image_url).into(circleImageView);
+        public  void setImage(final String image_url, final Context ctx){
+            final CircleImageView circleImageView=(CircleImageView)mview.findViewById(R.id.user_single_image);
+            Picasso.with(ctx).load(image_url).networkPolicy(NetworkPolicy.OFFLINE).into(circleImageView, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(ctx).load(image_url).into(circleImageView);
+                }
+            });
         }
 
         private void Layout_hide() {
